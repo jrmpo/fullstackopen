@@ -6,10 +6,10 @@ sequenceDiagram
     participant server
 
     browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note
+    Note right of server: The server appends the note in the request body to the notes array
     activate server
     server-->>browser: HTTP response, URL redirect to /notes address
     deactivate server
-    Note right of server: The server appends the note in the request body to the notes array
 
     browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/notes
     activate server
