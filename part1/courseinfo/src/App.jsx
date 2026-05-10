@@ -1,5 +1,6 @@
 const Header = (props) => {
- return(
+  console.log(props.course.name)
+  return(
   <h1>{props.course.name}</h1>
  )
 }
@@ -9,7 +10,7 @@ const Part = (props) => {
   console.log(props.section.exercises)
   return (
     <>
-    <p>{props.section.name} {props.section.exercises}</p>
+    <p>{props.section.name}: {props.section.exercises} exercises</p>
     </>
   )
 }
