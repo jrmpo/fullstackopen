@@ -30,7 +30,7 @@ const Statistics = ({ good, neutral, bad, total, average, positive }) => {
         <StatisticsLine text='bad' value={bad}/>
         <StatisticsLine text='total' value={total}/>
         <StatisticsLine text='average' value={average}/>
-        <StatisticsLine text='positive' value={positive}/>
+        <StatisticsLine text='positive %' value={positive}/>
       </tbody>
     </table>
   )
@@ -81,12 +81,6 @@ const App = () => {
       <Button onClick={addBad} text='bad'/>
       <Header text='statistics'/>
       <Statistics good={good} neutral={neutral} bad={bad} total={total} average={average} positive={positive}/>
-      {/* <div>good: {good}</div>
-      <div>neutral: {neutral}</div>
-      <div>bad: {bad}</div>
-      <div>total ratings: {total}</div>
-      <div>average rating: {average}</div>
-      <div>positive percent: {positive}%</div> */}
     </div>
   )
 }
