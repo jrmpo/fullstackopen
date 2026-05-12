@@ -2,6 +2,19 @@ import { useState } from 'react'
 
 const Button = ({ onClick, text}) => <button onClick = {onClick}> {text} </button>
 
+const Highest = ({ anecdotes, votes}) => {
+  if (Math.max(...votes) === 0){
+    return "No votes yet"
+  }
+  return(
+    <div>
+      {anecdotes[votes.indexOf(Math.max(...votes))]} <br></br>
+      has {Math.max(...votes)} votes
+    </div>
+  )
+
+}
+
 const App = () => {
   const anecdotes = [
     'If it hurts, do it more often.',
@@ -30,10 +43,12 @@ const App = () => {
 
   return (
     <div>
-      <h1>Anecdote of the Day</h1>
+      <h2>Anecdote of the Day</h2>
       <div>{anecdotes[selected]}</div>
       <Button onClick={genRandom} text="next anecdote"/>
       <Button onClick={addVote} text="vote +1"/>
+      <h2>Highest rated Anecdote</h2>
+      <Highest anecdotes={anecdotes} votes={votes}/>
     </div>
     
   )
