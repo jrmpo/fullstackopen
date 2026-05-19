@@ -1,8 +1,8 @@
 import { useState } from 'react'
+import {Persons, Person}from "./components/Person"
+import Filter from "./components/Filter"
+import PersonForm from "./components/PersonForm"
 
-const Person = ({person}) => {
-  return <li>{person.name}: {person.number}</li>
-}
 
 const App = () => {
   const [persons, setPersons] = useState([
@@ -50,23 +50,25 @@ const App = () => {
 
   }
   const changeName = (event) => {
+    event.preventDefault()
     console.log(event.target.value)
     setNewName(event.target.value)
     
   }
-  const addNumber = (event) => {
-    event.preventDefault()
-    console.log('button clicked', event.target)
-  }
+  // const addNumber = (event) => {
+  //   event.preventDefault()
+  //   console.log('button clicked', event.target)
+  // }
   const changeNumber = (event) => {
+    event.preventDefault()
     console.log(event.target.value)
     setNewNumber(event.target.value)
   }
-  const addInfo = (event) => {
-    event.preventDefault()
-    addName()
-    addNumber()
-  }
+  // const addInfo = (event) => {
+  //   event.preventDefault()
+  //   addName()
+  //   addNumber()
+  // }
   const searchName = (event) => {
     event.preventDefault()
     const updatedStr = event.target.value
@@ -78,21 +80,16 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      <div> filter shown with: <input value={newSearch} onChange = {searchName} /></div>
+      <Filter newSearch={newSearch} searchFunc={searchName}/>
       <h2>Add New Contact</h2>
-      <form onSubmit={addName}>
-        <div> name: <input value={newName} onChange = {changeName} /></div>
-        <div> number: <input value={newNumber} onChange = {changeNumber} /></div>
-        <div>
-          <button type="submit">add</button>
-        </div>
-      </form>
+      <PersonForm 
+        addName={addName} 
+        newName={newName} 
+        changeName={changeName} 
+        newNumber={newNumber} 
+        changeNumber={changeNumber}/>
       <h2>Numbers</h2>
-      <ul>
-        {(persons.filter(person => person.name.toLowerCase().includes(newSearch.toLowerCase()))).map(person => 
-          <Person key={person.name} person={person}/>
-        )}
-      </ul>
+      <Persons persons={persons} search={newSearch}/>
     </div>
   )
 }
